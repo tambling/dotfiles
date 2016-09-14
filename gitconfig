@@ -1,0 +1,6 @@
+[user]
+  name = Dean Tambling
+  email = dean.tambling@gmail.com
+[core]
+  editor = /usr/local/bin/vim
+	excludesfile = /Users/dean/.gitignore

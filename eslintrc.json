@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "react", 
+    "jsx-a11y"
+  ],
+  "extends": "airbnb",
+  "rules": {
+    "arrow-body-style": ["error", "as-needed"]
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  }
+}
