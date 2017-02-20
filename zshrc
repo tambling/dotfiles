@@ -8,6 +8,7 @@ export PGDATA="/usr/local/var/postgres"
 source ~/.secrets
 
 eval "$(rbenv init -)"
+export PATH=$(npm bin):$PATH
 # End existing settings
 
 # Disable flow control commands (keeps C-s from freezing everything)
@@ -99,3 +100,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Spaceship settings:
 SPACESHIP_RUBY_SHOW=false
+
+if [ -d "$PWD/node_modules/.bin" ]; then
+    PATH="$PATH:$PWD/node_modules/.bin"
+fi
