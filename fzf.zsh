@@ -10,6 +10,10 @@ if [[ ! "$MANPATH" == */usr/local/opt/fzf/man* && -d "/usr/local/opt/fzf/man" ]]
   export MANPATH="$MANPATH:/usr/local/opt/fzf/man"
 fi
 
+if command -v ag > /dev/null; then
+  export FZF_DEFAULT_COMMAND='ag -g ""'
+fi
+
 # Auto-completion
 # ---------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
