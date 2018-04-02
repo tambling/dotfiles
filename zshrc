@@ -101,6 +101,4 @@ source $ZSH/oh-my-zsh.sh
 # Spaceship settings:
 SPACESHIP_RUBY_SHOW=false
 
-if [ -d "$PWD/node_modules/.bin" ]; then
-    PATH="$PATH:$PWD/node_modules/.bin"
-fi
+alias reload='source ~/.zshrc'
