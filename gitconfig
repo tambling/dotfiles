@@ -1,6 +1,23 @@
 [user]
-  name = Dean Tambling
-  email = dean.tambling@gmail.com
+	name = Dean Tambling
+	email = tambling@github.com
+	signingkey = 8B335E81F942A177
+[github]
+	user = tambling
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
+[gpg]
+	program = gpg
+[commit]
+	gpgsign = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [core]
-  editor = /usr/local/bin/vim
 	excludesfile = /Users/dean/.gitignore
+[pack]
+	windowMemory = 128k

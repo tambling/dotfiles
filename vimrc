@@ -6,20 +6,22 @@ syntax on
 set nocompatible
 
 set number
-set relativenumber
+set norelativenumber
 
 set hidden
 set lazyredraw
 
+" set termguicolors
+
 set backspace=indent,eol,start
 set history=1000
 set scrolloff=4
-set background=dark
 set tabstop=2
 set shiftwidth=2
 set smarttab
 
 set textwidth=80
+set colorcolumn=80
 
 set wildmenu
 set expandtab
@@ -35,13 +37,14 @@ nmap 0 ^
 nmap <C-s> :w<cr>
 imap <C-s> <esc>:w<cr>
 
-nmap <Left> <C-w>h
 nmap <Up> <C-w>k
 nmap <Down> <C-w>j
+nmap <Left> <C-w>h
 nmap <Right> <C-w>l
 
 nmap <Leader>// :Ack<space>
-nmap <Leader>/w :Ack <cword><cr>
+nmap <Leader>/w :Rg <cword><cr>
+nmap <Leader>cr :call VimuxRunCommand("ruby ".expand("%"))<cr>
 nmap <Leader>h :nohl<cr>
 nmap <Leader>h :noh<cr>
 nmap <Leader>oo :Files<cr>
@@ -52,59 +55,61 @@ nmap <Leader>vr :sp $MYVIMRC<cr>
 nmap <Leader>ne :lnext<cr>
 nmap <Leader>pe :lprev<cr>
 nmap <Leader>bl :Gblame<cr>
-
-nmap <Leader>rc :call RunCurrentSpecFile()<cr>
-nmap <Leader>rn :call RunNearestSpec()<cr>
-nmap <Leader>rl :call RunLastSpec()<cr>
-nmap <Leader>ra :call RunAllSpecs()<cr>
+nmap <Leader>tb :TagbarToggle<cr>
+nmap <Leader>tt :TestNearest<cr>
+nmap <Leader>tf :TestFile<cr>
+nmap <Leader>fsl i# frozen_string_literal: true<esc>o<esc>xxo
+nmap <Leader>qr :QuickRun<cr>
 
 vnoremap // y/<C-r>"<cr>
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/bundles')
-  Plug 'chriskempson/base16-vim'  
+  Plug 'janko-m/vim-test'
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-dispatch'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-ragtag'
   Plug 'tpope/vim-fugitive'
-  Plug 'mileszs/ack.vim'
-  Plug 'pangloss/vim-javascript'
-  Plug 'mxw/vim-jsx'
-  Plug 'thoughtbot/vim-rspec'
-  Plug 'scrooloose/syntastic'
-  Plug 'ervandew/supertab'
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-  Plug 'xolox/vim-easytags'
-  Plug 'xolox/vim-misc'
-  Plug 'suan/vim-instant-markdown'
+  Plug 'junegunn/goyo.vim'
+  Plug 'junegunn/limelight.vim'
   Plug 'vim-ruby/vim-ruby'
+  Plug 'dense-analysis/ale'
+  Plug 'pangloss/vim-javascript'
+  Plug 'benmills/vimux'
+  Plug 'ervandew/supertab'
+  Plug 'mhartington/oceanic-next'
+  Plug 'junegunn/seoul256.vim'
+  Plug 'zerowidth/vim-copy-as-rtf'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'thinca/vim-quickrun'
 call plug#end()
 
-colorscheme base16-default-dark
-
 set clipboard=unnamed
-
 
 set splitbelow
 set splitright
 set winwidth=80
 
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep'
-endif
+set exrc
+set secure
 
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
-let g:syntastic_javascript_checkers=['eslint']
-let g:syntastic_ruby_checkers=['rubocop']
-let g:syntastic_always_populate_loc_list=1
+set re=1
 
-let g:prettier#config#single_quote="true"
-let g:prettier#config#trailing_comma="es5"
-let g:prettier#config#bracket_spacing="true"
-let g:prettier#config#jsx_bracket_same_line="false"
+let test#strategy = "vimux"
+let g:VimuxUseNearest = 0
 
-let g:jsx_ext_required = 0
+let ruby_fold=1
 
-let g:rspec_command = "!clear; rspec -f d {spec}"
+let g:ale_fixers = {
+\   'ruby': ['rubocop'],
+\}
+
+colo seoul256
+let g:seoul256_srgb = 1

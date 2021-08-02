@@ -1,6 +1,7 @@
 *.swp
 .env
 tags
+tags.*
 
 # Compiled source #
 ###################
@@ -29,6 +30,7 @@ tags
 *.log
 *.sql
 *.sqlite
+.byebug_history
 
 # OS generated files #
 ######################
@@ -39,3 +41,7 @@ tags
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Per-project configuration files #
+###################################
+.vimrc
