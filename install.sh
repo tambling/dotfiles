@@ -1,13 +1,11 @@
 #!/bin/bash
-
 set -ex
 
-DOTFILESDIRREL="$(dirname "$0")"
-cd $DOTFILESDIRREL/..
-DOTFILESDIR="$(pwd -P)"
+shopt -s extglob
 
-ln -sf "$DOTFILESDIR" "$HOME/.dotfiles"
+CURRENT_DIRECTORY="$(pwd -P)"
 
-brew install rcm
-
-rcup -d "$HOME/.dotfiles"
+for f in !(*.sh)
+do
+  ln -fs  "$CURRENT_DIRECTORY/$f" "$HOME/.$f"
+done
