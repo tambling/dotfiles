@@ -41,24 +41,28 @@ alias reload='source ~/.zshrc'
 export CASE_SENSITIVE=false
 setopt MENU_COMPLETE
 
-eval "$(rbenv init -)"  
-eval "$(nodenv init -)"
+if command -v rbenv
+then
+  eval "$(rbenv init -)"
+fi
+
+if command -v nodenv
+then
+  eval "$(nodenv init -)"
+fi
 
 export GPG_TTY=$(tty)
 
 precmd() { echo -ne "\033]0;$(whoami)@$(hostname):${PWD/#$HOME/~}\007" }
 
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
-
-# Base16 Shell
-BASE16_SHELL="$HOME/.config/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 # --END EXISTING SETTINGS--
 export PATH="/usr/local/sbin:$PATH"
 
-source $HOME/.secrets
+if [ -f "$HOME/.secrets" ]
+then
+  source $HOME/.secrets
+fi
