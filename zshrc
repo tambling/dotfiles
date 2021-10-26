@@ -1,6 +1,8 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+source $ZSH/oh-my-zsh.sh
+
 if [ ! -f "$ZSH_CUSTOM/themes/spaceship.zsh-theme" ]
 then
   git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
