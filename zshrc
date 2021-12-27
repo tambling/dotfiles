@@ -49,12 +49,12 @@ alias reload='source ~/.zshrc'
 export CASE_SENSITIVE=false
 setopt MENU_COMPLETE
 
-if command -v rbenv
+if command -v rbenv > /dev/null
 then
   eval "$(rbenv init -)"
 fi
 
-if command -v nodenv
+if command -v nodenv > /dev/null
 then
   eval "$(nodenv init -)"
 fi

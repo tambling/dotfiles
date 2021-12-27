@@ -10,8 +10,8 @@ if [[ ! "$MANPATH" == */usr/local/opt/fzf/man* && -d "/usr/local/opt/fzf/man" ]]
   export MANPATH="$MANPATH:/usr/local/opt/fzf/man"
 fi
 
-if command -v ag > /dev/null; then
-  export FZF_DEFAULT_COMMAND='ag -g ""'
+if command -v rg > /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
 fi
 
 # Auto-completion
@@ -20,5 +20,4 @@ fi
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-
+# source "/usr/local/opt/fzf/shell/key-bindings.zsh"
