@@ -11,3 +11,5 @@ for f in !(*.sh)
 do
   ln -fs  "$CURRENT_DIRECTORY/$f" "$HOME/.$f"
 done
+
+source "~/.zshrc"
