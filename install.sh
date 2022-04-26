@@ -3,7 +3,7 @@ set -ex
 
 shopt -s extglob
 
-chsh -s "$(which zsh)"
+sudo chsh -s "$(which zsh)" $USER
 
 CURRENT_DIRECTORY="$(pwd -P)"
 
