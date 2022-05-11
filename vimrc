@@ -54,7 +54,7 @@ nmap <Leader>so :source $MYVIMRC<cr>
 nmap <Leader>vr :sp $MYVIMRC<cr>
 nmap <Leader>ne :lnext<cr>
 nmap <Leader>pe :lprev<cr>
-nmap <Leader>bl :Gblame<cr>
+nmap <Leader>bl :Git blame<cr>
 nmap <Leader>tb :TagbarToggle<cr>
 nmap <Leader>tt :TestNearest<cr>
 nmap <Leader>tf :TestFile<cr>
@@ -87,7 +87,6 @@ call plug#begin('~/.vim/bundles')
   Plug 'ervandew/supertab'
   Plug 'mhartington/oceanic-next'
   Plug 'junegunn/seoul256.vim'
-  Plug 'zerowidth/vim-copy-as-rtf'
   Plug 'sheerun/vim-polyglot'
   Plug 'thinca/vim-quickrun'
 call plug#end()
