@@ -35,7 +35,7 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR="vim"
 export PGDATA="/usr/local/var/postgres"
 
-export GOPATH="/Users/dean/.go"
+export GOPATH="$HOME/.go"
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
