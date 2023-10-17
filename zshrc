@@ -14,6 +14,7 @@ stty start undef
 stty stop undef
 
 alias reload='source ~/.zshrc'
+alias vim='nvim'
 
 export CASE_SENSITIVE=false
 setopt MENU_COMPLETE
