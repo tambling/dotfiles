@@ -13,6 +13,7 @@ then
   package_manager="apt-get"
 fi
 
+sudo $package_manager update
 sudo $package_manager install neovim ripgrep tmux
 
 CURRENT_DIRECTORY="$(pwd -P)"
