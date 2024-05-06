@@ -19,35 +19,16 @@ alias vim='nvim'
 export CASE_SENSITIVE=false
 setopt MENU_COMPLETE
 
-if command -v rbenv > /dev/null
-then
-  eval "$(rbenv init -)"
-fi
+rbenv_directory="$HOME/.rbenv"
+eval "$($rbenv_directory/bin/rbenv init - zsh)"
 
-if command -v nodenv > /dev/null
-then
-  eval "$(nodenv init -)"
-fi
-
-zsh_directory="$HOME/.zsh"
-if [[ ! -d $zsh_directory ]]; then
-  mkdir -p $zsh_directory
-fi
-
-spaceship_directory="$zsh_directory/spaceship"
-spaceship_executable="$spaceship_directory/spaceship.zsh"
-
-if [[ ! -f $spaceship_executable ]]; then
-  git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$spaceship_directory"
-fi
+nodenv_directory="$HOME/.nodenv"
+export PATH="$nodenv_directory/bin:$PATH"
+eval "$(nodenv init - zsh)"
 
 source "$HOME/.zsh/spaceship/spaceship.zsh"
 
 export GPG_TTY=$(tty)
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 export PATH="/usr/local/sbin:$PATH"
 
