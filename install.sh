@@ -25,7 +25,7 @@ eval "yes | sudo $install_command neovim ripgrep tmux"
 
 CURRENT_DIRECTORY="$(pwd -P)"
 
-for f in **/*~*.sh
+for f in **/*~*.sh~config/*
 do
   ln -fs  "$CURRENT_DIRECTORY/$f" "$HOME/.$f"
 done
