@@ -20,7 +20,7 @@ then
   install_command="apt install"
 fi
 
-sudo $package_manager update
+eval "sudo $update_command"
 eval "yes | sudo $install_command neovim ripgrep tmux"
 
 CURRENT_DIRECTORY="$(pwd -P)"
