@@ -26,7 +26,7 @@ eval "yes | sudo $install_command neovim ripgrep tmux"
 CURRENT_DIRECTORY="$(pwd -P)"
 
 find * -type d -exec mkdir -p $HOME/.{} \;
-find * -type f -exec ln -s $CURRENT_DIRECTORY/{} $HOME/.{} \;
+find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
 
 rbenv_directory="$HOME/.rbenv"
 if [[ ! -f "$rbenv_directory/bin/rbenv" ]]; then
