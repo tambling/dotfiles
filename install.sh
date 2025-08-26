@@ -16,6 +16,9 @@ then
   install_command="pacman -S"
 elif command -v apt > /dev/null
 then
+  sudo apt install software-properties-common -y
+  sudo add-apt-repository ppa:neovim-ppa/stable -y
+
   update_command="apt update"
   install_command="apt install"
 fi

@@ -70,25 +70,25 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundles')
+  Plug 'benmills/vimux'
+  Plug 'ervandew/supertab'
+  Plug 'github/copilot.vim'
   Plug 'janko-m/vim-test'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-dispatch'
-  Plug 'tpope/vim-surround'
-  Plug 'tpope/vim-repeat'
-  Plug 'tpope/vim-fugitive'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/goyo.vim'
   Plug 'junegunn/limelight.vim'
-  Plug 'vim-ruby/vim-ruby'
-  Plug 'dense-analysis/ale'
-  Plug 'pangloss/vim-javascript'
-  Plug 'benmills/vimux'
-  Plug 'ervandew/supertab'
-  Plug 'mhartington/oceanic-next'
   Plug 'junegunn/seoul256.vim'
+  Plug 'mhartington/oceanic-next'
+  Plug 'pangloss/vim-javascript'
   Plug 'sheerun/vim-polyglot'
   Plug 'thinca/vim-quickrun'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-dispatch'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-surround'
+  Plug 'vim-ruby/vim-ruby'
 call plug#end()
 
 set clipboard=unnamed
