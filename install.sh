@@ -6,25 +6,15 @@ setopt null_glob
 
 sudo chsh -s $(which zsh) $USER
 
-if command -v brew > /dev/null
-then
-  update_command="brew update"
-  install_command="brew install"
-elif command -v pacman > /dev/null
-then
-  update_command="pacman -Syu"
-  install_command="pacman -S"
-elif command -v apt > /dev/null
-then
-  sudo apt install software-properties-common -y
-  sudo add-apt-repository ppa:neovim-ppa/stable -y
-
-  update_command="apt update"
-  install_command="apt install"
+# Install linuxbrew if needed
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.zshrc
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
-eval "sudo $update_command"
-eval "yes | sudo $install_command neovim ripgrep tmux"
+brew update
+yes | brew install neovim ripgrep tmux"
 
 CURRENT_DIRECTORY="$(pwd -P)"
 
