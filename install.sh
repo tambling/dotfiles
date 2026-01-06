@@ -6,6 +6,9 @@ setopt null_glob
 
 sudo chsh -s $(which zsh) $USER
 
+find * -type d -exec mkdir -p $HOME/.{} \;
+find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
+
 # Install linuxbrew if needed
 if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -17,9 +20,6 @@ brew update
 yes | brew install neovim ripgrep tmux"
 
 CURRENT_DIRECTORY="$(pwd -P)"
-
-find * -type d -exec mkdir -p $HOME/.{} \;
-find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
 
 rbenv_directory="$HOME/.rbenv"
 if [[ ! -f "$rbenv_directory/bin/rbenv" ]]; then
