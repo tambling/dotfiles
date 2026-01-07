@@ -36,3 +36,9 @@ if [ -f "$HOME/.secrets" ]
 then
   source $HOME/.secrets
 fi
+
+# shellenv linuxbrew if it's present
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]
+then
+  /home/linuxbrew/.linuxbrew/bin/brew shellenv
+fi

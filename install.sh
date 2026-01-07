@@ -1,10 +1,14 @@
 #!/bin/zsh
 set -ex
 
+export NONINTERACTIVE=1
+
 setopt extended_glob
 setopt null_glob
 
 sudo chsh -s $(which zsh) $USER
+
+CURRENT_DIRECTORY="$(pwd -P)"
 
 find * -type d -exec mkdir -p $HOME/.{} \;
 find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
@@ -12,14 +16,11 @@ find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
 # Install linuxbrew if needed
 if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> $HOME/.zshrc
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 brew update
-yes | brew install neovim ripgrep tmux"
-
-CURRENT_DIRECTORY="$(pwd -P)"
+brew install neovim ripgrep tmux
 
 rbenv_directory="$HOME/.rbenv"
 if [[ ! -f "$rbenv_directory/bin/rbenv" ]]; then
