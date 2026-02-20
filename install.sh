@@ -8,7 +8,7 @@ shopt -s nullglob
 # Install Ubuntu prerequisites for Homebrew and the rest of the setup
 if command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update
-  sudo apt-get install -y build-essential procps curl file git zsh
+  sudo apt-get install -y build-essential procps curl file git zsh neovim
 fi
 
 sudo chsh -s $(which zsh) $USER
@@ -17,6 +17,23 @@ CURRENT_DIRECTORY="$(pwd -P)"
 
 find * -type d -exec mkdir -p $HOME/.{} \;
 find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
+
+zsh_directory="$HOME/.zsh"
+if [[ ! -d $zsh_directory ]]; then
+  mkdir -p $zsh_directory
+fi
+
+spaceship_directory="$zsh_directory/spaceship"
+spaceship_executable="$spaceship_directory/spaceship.zsh"
+
+if [[ ! -f $spaceship_executable ]]; then
+  git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$spaceship_directory"
+fi
+
+# Install vim-plug and plugins for neovim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim --headless +PlugInstall +qall || true
 
 # Install linuxbrew if needed
 if ! command -v brew >/dev/null 2>&1; then
@@ -53,16 +70,4 @@ if [[ -d $node_build_directory ]]; then
 else
   mkdir -p $node_build_directory
   git clone http://github.com/nodenv/node-build.git $node_build_directory
-fi
-
-zsh_directory="$HOME/.zsh"
-if [[ ! -d $zsh_directory ]]; then
-  mkdir -p $zsh_directory
-fi
-
-spaceship_directory="$zsh_directory/spaceship"
-spaceship_executable="$spaceship_directory/spaceship.zsh"
-
-if [[ ! -f $spaceship_executable ]]; then
-  git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$spaceship_directory"
 fi
