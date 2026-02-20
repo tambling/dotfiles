@@ -1,10 +1,15 @@
-#!/bin/zsh
+#!/bin/bash
 set -ex
 
 export NONINTERACTIVE=1
 
-setopt extended_glob
-setopt null_glob
+shopt -s nullglob
+
+# Install Ubuntu prerequisites for Homebrew and the rest of the setup
+if command -v apt-get >/dev/null 2>&1; then
+  sudo apt-get update
+  sudo apt-get install -y build-essential procps curl file git zsh
+fi
 
 sudo chsh -s $(which zsh) $USER
 
