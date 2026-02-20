@@ -26,7 +26,7 @@ fi
 
 nodenv_directory="$HOME/.nodenv"
 export PATH="$nodenv_directory/bin:$PATH"
-if command -v nodenv >/dev/null 2>&1; then
+if [[ -f "$nodenv_directory/bin/nodenv" ]]; then
   eval "$(nodenv init - zsh)"
 fi
 
