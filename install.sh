@@ -8,7 +8,7 @@ shopt -s nullglob
 # Install Ubuntu prerequisites for Homebrew and the rest of the setup
 if command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update
-  sudo apt-get install -y build-essential procps curl file git zsh neovim
+  sudo apt-get install -y build-essential procps curl file git zsh
 fi
 
 sudo chsh -s $(which zsh) $USER
@@ -30,11 +30,6 @@ if [[ ! -f $spaceship_executable ]]; then
   git clone --depth=1 https://github.com/spaceship-prompt/spaceship-prompt.git "$spaceship_directory"
 fi
 
-# Install vim-plug and plugins for neovim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim --headless +PlugInstall +qall || true
-
 # Install linuxbrew if needed
 if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -43,6 +38,11 @@ fi
 
 brew update
 brew install neovim ripgrep tmux
+
+# Install vim-plug and plugins for neovim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim --headless +PlugInstall +qall || true
 
 rbenv_directory="$HOME/.rbenv"
 if [[ ! -f "$rbenv_directory/bin/rbenv" ]]; then
