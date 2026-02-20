@@ -20,13 +20,19 @@ export CASE_SENSITIVE=false
 setopt MENU_COMPLETE
 
 rbenv_directory="$HOME/.rbenv"
-eval "$($rbenv_directory/bin/rbenv init - zsh)"
+if [[ -f "$rbenv_directory/bin/rbenv" ]]; then
+  eval "$($rbenv_directory/bin/rbenv init - zsh)"
+fi
 
 nodenv_directory="$HOME/.nodenv"
 export PATH="$nodenv_directory/bin:$PATH"
-eval "$(nodenv init - zsh)"
+if [[ -f "$nodenv_directory/bin/nodenv" ]]; then
+  eval "$(nodenv init - zsh)"
+fi
 
-source "$HOME/.zsh/spaceship/spaceship.zsh"
+if [[ -f "$HOME/.zsh/spaceship/spaceship.zsh" ]]; then
+  source "$HOME/.zsh/spaceship/spaceship.zsh"
+fi
 
 export GPG_TTY=$(tty)
 
