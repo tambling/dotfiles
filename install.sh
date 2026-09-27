@@ -16,7 +16,20 @@ sudo chsh -s $(which zsh) $USER
 CURRENT_DIRECTORY="$(pwd -P)"
 
 find * -type d -exec mkdir -p $HOME/.{} \;
-find * -type f -exec ln -fs $CURRENT_DIRECTORY/{} $HOME/.{} \;
+while IFS= read -r -d '' file; do
+  target="$HOME/.${file}"
+
+  if [[ -L "$target" ]]; then
+    continue
+  elif [[ -f "$target" ]]; then
+    cat "$CURRENT_DIRECTORY/$file" >> "$target"
+  elif [[ -e "$target" ]]; then
+    echo "Cannot install $file: $target is not a regular file" >&2
+    exit 1
+  else
+    ln -s "$CURRENT_DIRECTORY/$file" "$target"
+  fi
+done < <(find * -type f -print0)
 
 zsh_directory="$HOME/.zsh"
 if [[ ! -d $zsh_directory ]]; then
