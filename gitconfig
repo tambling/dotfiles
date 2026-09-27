@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Dean Tambling
+	email = tambling@github.com
+[core]
+	excludesFile = ~/.gitignore
+[push]
+	autoSetupRemote = true
